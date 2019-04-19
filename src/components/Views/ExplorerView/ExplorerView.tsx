@@ -1,22 +1,21 @@
 import React from 'react';
 
-import Card from '../../common/Card';
 import ExplorerHeader from './scene/ExplorerHeader';
+import ExplorerContent from './scene/ExplorerContent';
 import { Web3Context } from '../../../contexts/Web3Context';
 
 import './ExplorerView.scss';
-import ExplorerContent from './scene/ExplorerContent';
 
-// Themed Component
-//
 const ExplorerView = () => (
   <div className="explorerview-container">
     <Web3Context.Consumer>
       {({ state, actions }) => (
         <>
+          {/* Header with current Ethereum statistics */}
           <ExplorerHeader
             blocks={Object.values(state.blocks).reverse().filter(block => block)}
           />
+          {/* Page content with block cards  */}
           <ExplorerContent
             blocks={state.blocks}
             blockRangeVisible={state.blockRangeVisible}

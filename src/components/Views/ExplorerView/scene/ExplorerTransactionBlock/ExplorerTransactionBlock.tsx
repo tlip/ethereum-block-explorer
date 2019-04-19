@@ -5,6 +5,8 @@ import './ExplorerTransactionBlock.scss';
 const ExplorerTransactionBlock = (props: { transaction?: any }) => (
   <div className="explorertransactionblock-container">
     <div className="explorertransactionblock-block" />
+
+    {/* If this TransactioinBlock isn't a placeholder, then this is a tooltip. */}
     {
       !props.transaction || !props.transaction.hash 
         ? null
@@ -53,6 +55,7 @@ const ExplorerTransactionBlock = (props: { transaction?: any }) => (
           </div>
         )
     }
+
   </div>
 );
 

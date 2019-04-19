@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Block } from 'web3/eth/types';
+
 import ExplorerBlockCard from '../ExplorerBlockCard';
 import Button from '../../../../common/Button';
 
@@ -14,14 +15,27 @@ export type ExplorerContentProps = {
 };
 
 const ExplorerContent = (props: ExplorerContentProps) => {
+
+  // Object keys in JS are sorted, so this is guaranteed to be the newest block number
   const newestBlockNum = Object.keys(props.blocks)[Object.keys(props.blocks).length - 1];
+
+  // If there are blocks newer than what blockRangeVisible says, then
+  // we'll have a button pop up a la Twitter telling the user that we can add 
+  // newer blocks.
+
+  // This is so that we don't mess the user up if they're analyzing a specific block and/or transactioini
   const needsUpdate = props.blockRangeVisible[1] < +newestBlockNum;
+
+  // Here we're going to filter out the blocks with numbers outside of the range
+  // passed in blockRangeVisible
   const _blocks: (Block | {})[] = Object.values(props.blocks)
     .filter(block => (
       block &&
         (block.number > props.blockRangeVisible[0]) && (block.number <= props.blockRangeVisible[1])
     ));
 
+  // We will always show at least 20 cards.
+  // If we have less than 20 blocks fetched, then we'll push an empty object.
   while (_blocks.length < 20) {
     _blocks.push({});
   }
