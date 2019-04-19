@@ -1,5 +1,6 @@
 declare module 'react-router-dom';
 declare module 'react-router-dom/StaticRouter';
+declare module 'react-router-dom/MemoryRouter';
 declare module 'react-router-dom/BrowserRouter';
 declare module 'react-router-dom/Switch';
 declare module 'react-router-dom/Route';
