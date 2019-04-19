@@ -5,6 +5,7 @@ import { Block } from 'web3/eth/types';
 import ExplorerTransactionBlock from '../ExplorerTransactionBlock';
 import ExplorerBlockCardPlaceholder from './ExplorerBlockCard.Placeholder';
 import Card from '../../../../common/Card';
+import { CaretDownIcon } from '../../../../common/Icons';
 import thousandsFormat from '../../../../../utils/thousandsFormat';
 
 import './ExplorerBlockCard.scss';
@@ -74,6 +75,20 @@ const ExplorerBlockCard = (props: ExplorerBlockCardProps) => {
           ))
         }
       </div>
+      {
+        props.block.transactions.length < 100
+          ? null
+          : (
+            <div className="explorerblockcard-footer">
+              <span>
+                {props.block.transactions.length - 100} MORE TX
+              </span>
+              <button className="explorerblockcard-footer-button">
+                <CaretDownIcon />
+              </button>
+            </div>
+          )
+      }
     </Card>
   );
 };
