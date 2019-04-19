@@ -4,10 +4,10 @@ import actionComposer from '../utils/actionComposer';
 import { Block, Eth } from 'web3-eth';
 import { BlockHeader } from 'web3/eth/types';
 
-// @ts-ignore
 const { RAZZLE_PRODUCT_ID } = process.env;
 
-// Initial Values
+
+// Initial State
 //
 const initialState: Web3Context.State = {
   web3: new Web3(new Web3.providers.WebsocketProvider(
@@ -18,6 +18,9 @@ const initialState: Web3Context.State = {
   blockRangeVisible: [Infinity, -Infinity],
 };
 
+
+// Initial Context
+//
 const initialContext: Web3Context.Value = {
   state: initialState,
   actions: {
@@ -26,6 +29,7 @@ const initialContext: Web3Context.Value = {
     showNewerBlocks: () => undefined,
   },
 };
+
 
 // Reducer
 //
@@ -47,6 +51,7 @@ const themeReducer = (
   }
 };
 
+
 // Exports
 //
 export const Web3Context = React.createContext(initialContext);
@@ -57,20 +62,21 @@ export const Web3ContextProvider = (props: any) => {
    * anywhere with the consumer
    */
 
+
   // Create Reducer
   //
   const [_state, dispatch] = React.useReducer(themeReducer, initialState);
   const state = _state!;
 
+
   // Curate Actions
   //
+  
   const setBlock: DispatchFunction = actionComposer(dispatch, 'SET_BLOCK');
   const showNewerBlocks: DispatchFunction = () => actionComposer(dispatch, 'UPDATE_BLOCK_RANGE')([
     state.blockRangeVisible[0],
     (Object.values(state.blocks)[Object.values(state.blocks).length - 1] as Block).number,
   ]);
-  // Web3Context Bootstrap Functions
-  //
 
   //  Get block by number
   const getBlock = (blockNumber: number) => {
@@ -83,6 +89,7 @@ export const Web3ContextProvider = (props: any) => {
     });
   };
 
+  // Fetch 20 earlier blocks than currently in the state
   const getMoreBlocks = () => {
     const range = state.blockRangeVisible;
     const earliestBlock = range[0] - 20;
@@ -95,7 +102,7 @@ export const Web3ContextProvider = (props: any) => {
     actionComposer(dispatch, 'UPDATE_BLOCK_RANGE')(range);
   };
 
-  // Get either missed (reconnected) or last 20 blocks (fresh init)
+  // Get either missed (after reconnect) or last 20 blocks (fresh init)
   const getRecentBlocks = () => {
     state.web3.eth.getBlockNumber()
       .then((blockNumber: number) => {
@@ -115,23 +122,20 @@ export const Web3ContextProvider = (props: any) => {
       .catch(() => {
         console.log('Could not get current block number...');
       });
-  };
-
-  // Subscribe to websocket and get recent blocks
-  const subscribe = (web3Eth: Eth) => {
-    getRecentBlocks();
-
-    const headerSubscription = web3Eth.subscribe('newBlockHeaders')
-      .on('data', (block: BlockHeader) => {
-        getBlock(block.number - 1);
-      });
-
-    actionComposer(dispatch, 'SET_SUBSCRIPTION')(headerSubscription);
-  };
+  };  
 
   // On mount, subscribe to newBlockHeaders pub/sub feed
   React.useEffect(() => {
-    subscribe(state.web3.eth);
+    const subscribe = (web3Eth: Eth) => {
+      getRecentBlocks();
+  
+      const headerSubscription = web3Eth.subscribe('newBlockHeaders')
+        .on('data', (block: BlockHeader) => {
+          getBlock(block.number - 1);
+        });
+  
+      actionComposer(dispatch, 'SET_SUBSCRIPTION')(headerSubscription);
+    };
   }, []);
   
 
