@@ -126,16 +126,14 @@ export const Web3ContextProvider = (props: any) => {
 
   // On mount, subscribe to newBlockHeaders pub/sub feed
   React.useEffect(() => {
-    const subscribe = (web3Eth: Eth) => {
-      getRecentBlocks();
-  
-      const headerSubscription = web3Eth.subscribe('newBlockHeaders')
-        .on('data', (block: BlockHeader) => {
-          getBlock(block.number - 1);
-        });
-  
-      actionComposer(dispatch, 'SET_SUBSCRIPTION')(headerSubscription);
-    };
+    getRecentBlocks();
+
+    const headerSubscription = state.web3.eth.subscribe('newBlockHeaders')
+      .on('data', (block: BlockHeader) => {
+        getBlock(block.number - 1);
+      });
+
+    actionComposer(dispatch, 'SET_SUBSCRIPTION')(headerSubscription);
   }, []);
   
 
