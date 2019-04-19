@@ -84,6 +84,9 @@ export const Web3ContextProvider = (props: any) => {
       if (err) {
         console.log(err);
         return;
+      } else if (!block) {
+        getBlock(blockNumber);
+        return;
       }
       setBlock({ [blockNumber]: block });
     });
