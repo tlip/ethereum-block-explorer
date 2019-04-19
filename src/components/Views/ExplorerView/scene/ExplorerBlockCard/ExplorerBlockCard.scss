@@ -1,0 +1,52 @@
+.explorerblockcard-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  width: 100%;
+  height: 77px;
+  padding: 18px;
+  box-sizing: border-box;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+  .explorerblockcard-header-loading {
+    height: 13px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .explorerblockcard-header-top,
+  .explorerblockcard-header-bottom {
+    span {
+      font-family: 'Lineto Akkuratmono Regular', sans-serif;
+      font-size: 16px;
+      line-height: normal;
+    }
+  }
+  .explorerblockcard-header-top {
+    display: flex;
+    justify-content: space-between;
+    
+    span {
+      color: #FFFFFF;
+    }
+  }
+
+  .explorerblockcard-header-bottom {
+    width: 100%;
+
+    span {
+      color: rgba(255, 255, 255, 0.75);
+    }
+  }
+}
+
+.explorerblockcard-body {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 18px 8px 9px 18px;
+  box-sizing: border-box;
+  width: 100%;
+}

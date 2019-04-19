@@ -1,0 +1,27 @@
+.button-container {
+  max-height: 41px;
+
+  padding: 10px 42px;
+  box-sizing: border-box;
+
+  background: rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  outline: none;
+
+  font-family: 'LineTo Akkurat Light', sans-serif;
+  font-size: 16px;
+  line-height: normal;
+  text-align: right;
+
+  color: #FFFFFF;
+
+  user-select: none;
+  cursor: pointer;
+
+  transition: 100ms background linear;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.45);
+  }
+}

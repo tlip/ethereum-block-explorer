@@ -1,0 +1,42 @@
+.headerfield-container {
+  min-width: 207px;
+  overflow: hidden;
+  padding: 3px 0;
+  box-sizing: border-box;
+
+  
+  > h2 {
+    margin-top: 0;
+    font-family: 'Lineto Akkuratmono Regular', sans-serif;
+    font-size: 16px;
+    line-height: normal;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .headerfield-value-container {
+    height: 48px;
+    padding-right: 20px;
+    box-sizing: border-box;
+
+    .headerfield-value-suffix,
+    .headerfield-value {
+      font-family: 'Lineto Akkurat Light', sans-serif;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .headerfield-value {
+      font-size: 58px;
+      line-height: 48px;
+    }
+    .headerfield-value-suffix {
+      font-size: 21px;
+    }
+
+    .headerfield-value-loading {
+      height: 48px;
+      width: 100%;
+
+      background:rgba(255, 255, 255, 0.1);
+    }
+  }
+}

@@ -1,0 +1,77 @@
+.explorertransactionblock-container {
+  width: 16px;
+  height: 16px;
+  margin: 0 9px 9px 0;
+
+  &:hover {
+    z-index: 1000;
+  }
+
+  .explorertransactionblock-tooltip {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    z-index: -1;
+    max-width: 0;
+    max-height: 0;
+    overflow: hidden;
+    background: white;
+    transform: translate(16px, -32px);
+    transition: 100ms transform linear, 100ms background linear;
+
+    &::before {
+      content: '';
+      position: absolute;
+      height: 16px;
+      width: 16px;
+      background: white;
+      transform: translate(-20px, 0) rotate(45deg);
+    }
+
+    
+    .explorertransactionblock-tooltip-field,
+    .explorertransactionblock-tooltip-value {
+      font-family: 'Lineto Akkuratmono Regular';
+      font-size: 12px;
+      line-height: normal;
+
+    }
+
+    .explorertransactionblock-tooltip-field {
+      color: #666666;
+    }
+
+    .explorertransactionblock-tooltip-value {
+      color: #584E9A;
+    }
+
+    .explorertransactionblock-tooltip-top,
+    .explorertransactionblock-tooltip-bottom {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
+    
+  }
+
+  .explorertransactionblock-block {
+    width: 16px;
+    height: 16px;
+    background: rgba(255, 255, 255, 0.25);
+
+    &:hover {
+      background: rgba(255, 255, 255, 1);
+
+      + .explorertransactionblock-tooltip {
+        padding: 16px 14px;
+        width: 253px;
+        height: 66px;
+        max-height: none;
+        max-width: none;
+        overflow: visible;
+        transform: translate(40px, -32px);
+      }
+    }
+  } 
+}
