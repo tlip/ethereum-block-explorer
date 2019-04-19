@@ -4,3 +4,4 @@ export { default as Grid } from './Grid.Icon';
 export { default as Infura } from './Infura.Icon';
 export { default as PowerOFf } from './PowerOff.Icon';
 export { default as Tachometer } from './Tachometer.Icon';
+export { default as CaretDownIcon } from './CaretDown.Icon';
