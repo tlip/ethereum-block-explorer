@@ -6,8 +6,6 @@ import Nav from '../common/Nav';
 
 import './Content.scss';
 
-// Themed Component
-//
 const Content = () => (
   <div className="content-container">
     <Nav />
