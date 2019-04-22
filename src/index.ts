@@ -5,8 +5,7 @@ const server = http.createServer(app);
 
 let currentApp = app;
 
-server.listen(process.env.PORT || 3000, (error: Error) => {
-  error && console.log(error);
+server.listen(process.env.PORT || 3000, () => {
   console.log('🚀 server started');
 });
 
