@@ -16,11 +16,11 @@
 ╚══════╝╚═╝  ╚═╝╚═╝     ╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝ 
 ```
 
-...is an Ethereum block explorer that updates in real-time by hooking into Infura's websocket API. It is written in `Typescript` and `React v16.18`.
+...is an Ethereum block explorer that updates in real-time by hooking into Infura's websocket API. It is rendered on the server side, is written in `Typescript`, and built with `React v16.18`.
 It manages Web3 data in the App state by using React's `useReducer` hooks wrapped in `Context` higher-order components to bless any component with direct access to anything it needs.
 
 ## Demo
-Want to check out a live action demo of it in action?
+Want to check out a live action demo?
 ### [Here you go!](http://ec2co-ecsel-qjw1pmxgxb5d-969144823.us-west-2.elb.amazonaws.com)
 
 
