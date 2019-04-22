@@ -21,7 +21,7 @@ It manages Web3 data in the App state by using React's `useReducer` hooks wrappe
 
 ## Demo
 Want to check out a live action demo?
-### [Here you go!](http://ec2co-ecsel-qjw1pmxgxb5d-969144823.us-west-2.elb.amazonaws.com)
+### [Here you go!](http://explorer.thom.li)
 
 
 ## Getting started
