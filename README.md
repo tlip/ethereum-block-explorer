@@ -19,6 +19,11 @@
 ...is an Ethereum block explorer that updates in real-time by hooking into Infura's websocket API. It is written in `Typescript` and `React v16.18`.
 It manages Web3 data in the App state by using React's `useReducer` hooks wrapped in `Context` higher-order components to bless any component with direct access to anything it needs.
 
+## Demo
+Want to check out a live action demo of it in action?
+### [Here you go!](http://ec2co-ecsel-qjw1pmxgxb5d-969144823.us-west-2.elb.amazonaws.com)
+
+
 ## Getting started
 1) Make sure you have:
     * `node v10.13.0+`
