@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Content from '../Content';
+import Content from '../Content/Loadable';
 import { Web3ContextProvider } from '../../contexts/Web3Context';
 
 const App = () => (
