@@ -34,7 +34,7 @@ $ npm run build && npm run start:prod
 ```
 
 ### Running dev mode
-Just FYI, this causes pretty bad flashes of unstyled content.
+~~Just FYI, this causes pretty bad flashes of unstyled content.~~
 ```bash
 $ npm start
 ```
@@ -50,8 +50,8 @@ $ npm start
   * _Pretty dang smooth otherwise..._
 
 ## TO-DO
-* Add `# MORE TXs` at the bottom of the block cards when over TX count is >100.
-* Add ability to expand card to view overflow transactions.
+* ~~Add `# MORE TXs` at the bottom of the block cards when over TX count is >100.~~
+* ~~Add ability to expand card to view overflow transactions.~~
 * Add more tests (only 1 right now, sorry :[).
 * Add transaction USD price data from CoinMarketCap or CryptoCompare.
 * Verify that the stats in the header are calculated correctly.
