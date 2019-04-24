@@ -36,7 +36,7 @@ const ExplorerContent = (props: ExplorerContentProps) => {
 
   // We will always show at least 20 cards.
   // If we have less than 20 blocks fetched, then we'll push an empty object.
-  while (_blocks.length < 20) {
+  while (_blocks.length < props.blockRangeVisible[1] - props.blockRangeVisible[0]) {
     _blocks.unshift({});
   }
 
