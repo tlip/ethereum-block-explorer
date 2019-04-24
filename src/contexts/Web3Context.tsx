@@ -16,6 +16,12 @@ const initialState: Web3Context.State = {
   headerSubscription: undefined,
   blocks: {},
   blockRangeVisible: [Infinity, -Infinity],
+  statistics: {
+    gasUsed: 0,
+    fullness: 0,
+    gasPrice: 0,
+    transactionCount: 0,
+  },
 };
 
 
@@ -40,12 +46,22 @@ const themeReducer = (
   switch (action.type) {
   case 'SET_WEB3':
     return { ...state, web3: action.payload };
-  case 'SET_BLOCK':
-    return { ...state, blocks: { ...state.blocks, ...action.payload } };
   case 'SET_SUBSCRIPTION':
     return { ...state, headerSubscription: action.payload };
   case 'UPDATE_BLOCK_RANGE':
     return { ...state, blockRangeVisible: action.payload };
+  case 'SET_BLOCK':
+    const block: Block | any = Object.values(action.payload)[0] || {};
+    return {
+      ...state,
+      blocks: { ...state.blocks, ...action.payload },
+      statistics: {
+        gasUsed: state.statistics.gasUsed + (block.gasUsed || 0),
+        gasPrice: state.statistics.gasPrice + ([0, ...block.transactions].reduce((a, b) => a + +b.gasPrice) || 0),
+        fullness: state.statistics.fullness + (block.gasUsed / block.gasLimit || 0),
+        transactionCount: state.statistics.transactionCount + block.transactions.length,
+      },
+    };
   default:
     return state;
   }
@@ -125,18 +141,29 @@ export const Web3ContextProvider = (props: any) => {
       .catch(() => {
         console.log('Could not get current block number...');
       });
-  };  
+  };
 
-  // On mount, subscribe to newBlockHeaders pub/sub feed
-  React.useEffect(() => {
+  // Subscribe to `newBlockHeader` evens through our web3 client.
+  const subscribeToNewBlockHeaders = () => {
     getRecentBlocks();
 
-    const headerSubscription = state.web3.eth.subscribe('newBlockHeaders')
+    const headerSubscription = state.web3.eth.subscribe('newBlockHeaders');
+
+    headerSubscription
       .on('data', (block: BlockHeader) => {
         getBlock(block.number - 1);
       });
 
     actionComposer(dispatch, 'SET_SUBSCRIPTION')(headerSubscription);
+  };
+
+  // On mount, subscribe to newBlockHeaders pub/sub feed
+  // On unmount, unsubscribe
+  React.useEffect(() => {
+    subscribeToNewBlockHeaders();
+    return () => {
+      state.headerSubscription && state.headerSubscription.unsubscribe();
+    };
   }, []);
   
 
