@@ -4,8 +4,8 @@ import './Card.scss';
 
 export type CardProps = React.ComponentProps<any>;
 
-const Card = ({ className, children, ...props}: CardProps) => (
-  <div className={`card-container ${props.className}`} {...props}>
+const Card = ({ className, children, ...props }: CardProps) => (
+  <div className={`card-container ${className}`} {...props}>
     {...children}
   </div>
 );
