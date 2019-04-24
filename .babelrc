@@ -3,6 +3,7 @@
     "razzle/babel",
   ],
   "plugins": [
-    "react-loadable/babel",
-  ],
+    "babel-plugin-dynamic-import-webpack",
+    "react-loadable/babel", 
+  ]
 }
