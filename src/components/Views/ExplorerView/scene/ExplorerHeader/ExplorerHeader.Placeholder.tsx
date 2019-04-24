@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Header from '../../../../common/Header';
-import HeaderField from '../../../../common/HeaderField';
+import HeaderField from '../../../../common/HeaderField/Loadable';
 
 const ExplorerHeaderPlaceholder = () => (
   <Header>
