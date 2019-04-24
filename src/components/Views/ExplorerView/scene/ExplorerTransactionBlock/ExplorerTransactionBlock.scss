@@ -1,6 +1,10 @@
 .explorertransactionblock-container {
+  display: inline-block;
+  position: relative;
   width: 16px;
   height: 16px;
+  max-width: 16px;
+  max-height: 16px;
   margin: 0 9px 9px 0;
 
   &:hover {
@@ -11,14 +15,23 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    position: relative;
+    position: absolute;
     z-index: -1;
-    max-width: 0;
-    max-height: 0;
-    overflow: hidden;
+    padding: 16px 14px;
+    width: 253px;
+    height: 66px;
+    max-height: none;
+    max-width: none;
+  
+    transform: translate(40px, -32px);
     background: white;
     transform: translate(16px, -32px);
-    transition: 100ms transform linear, 100ms background linear;
+    animation: explorertransactionblock-tooltip-appear 100ms  linear forwards;
+
+    @keyframes explorertransactionblock-tooltip-appear {
+      from { transform: translate(16px, -32px); opacity: 0; }
+      to { transform: translate(40px, -32px); opacity: 1; }
+    }
 
     &::before {
       content: '';
@@ -58,20 +71,15 @@
   .explorertransactionblock-block {
     width: 16px;
     height: 16px;
+    margin: 0;
     background: rgba(255, 255, 255, 0.25);
+
+    &.active {
+      background: rgba(255, 255, 255, 0.70);
+    }
 
     &:hover {
       background: rgba(255, 255, 255, 1);
-
-      + .explorertransactionblock-tooltip {
-        padding: 16px 14px;
-        width: 253px;
-        height: 66px;
-        max-height: none;
-        max-width: none;
-        overflow: visible;
-        transform: translate(40px, -32px);
-      }
     }
   } 
 }

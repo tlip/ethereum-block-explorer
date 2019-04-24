@@ -1,16 +1,17 @@
 {
   "name": "infura-explorer",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": "Thomas Lipari <thomas.lipari@gmail.com>",
   "private": true,
   "repository": {
     "type": "git",
-     "url": "https://github.com/flamingYawn/infura-explorer"
+    "url": "https://github.com/flamingYawn/infura-explorer"
   },
   "license": "UNLICENSED",
   "scripts": {
     "start": "razzle start",
     "build": "razzle build",
+    "build:docker": "RAZZLE_PUBLIC_DIR=/public razzle build && docker build -t infura-explorer .",
     "test": "razzle test --env=jsdom",
     "lint": "tslint -p tsconfig.json",
     "start:prod": "NODE_ENV=production node build/server.js"
@@ -29,10 +30,11 @@
     "@types/web3": "^1.0.18",
     "@types/webpack-env": "^1.13.6",
     "axios": "^0.18.0",
+    "babel-plugin-dynamic-import-webpack": "^1.1.0",
     "express": "^4.16.4",
     "moment": "^2.23.0",
     "morgan": "^1.9.1",
-    "razzle": "^2.4.0",
+    "razzle": "^3.0.0",
     "razzle-plugin-typescript": "^2.4.0",
     "react": "16.8",
     "react-dom": "16.8",

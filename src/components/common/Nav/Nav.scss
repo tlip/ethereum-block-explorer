@@ -19,6 +19,8 @@
     height: 96px;
     min-height: 96px;
     width: 96px;
+
+    opacity: 1;
   }
   .nav-links {
     width: 96px;
@@ -35,6 +37,7 @@
     justify-content: center;
     align-items: center;
     flex-basis: 96px;
+    opacity: 1;
 
     height: 96px;
     width: 96px;
@@ -42,7 +45,7 @@
     cursor: pointer;
     
     background: rgba(88, 79, 154, 0);
-    transition: 150ms background linear;
+    transition: 200ms background ease-in-out;
 
     &:hover {
       background: rgba(88, 79, 154, 0.5);

@@ -40,6 +40,23 @@ export default express()
               window.env = ${JSON.stringify(injectEnv)};
             </script>
             <link rel="stylesheet" href="/fonts.css">
+            <style>
+              .nav-link span,
+              .headerfield-container h2,
+              .explorerviewcontent-show-newer-container,
+              .explorerviewcontent-load-more-container {
+                color: transparent;
+              }
+              body {
+                margin: 0;
+                padding: 0;
+                background: linear-gradient(89.77deg, #584E9A 0.23%, #3A307C 99.77%);
+              }
+              .nav-header,
+              .nav-link {
+                opacity: 0;
+              }
+            </style>
             ${
               assets.client.css
                 ? `<link rel="stylesheet" href="${assets.client.css}">`
