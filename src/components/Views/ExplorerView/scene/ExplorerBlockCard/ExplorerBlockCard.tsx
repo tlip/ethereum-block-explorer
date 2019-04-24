@@ -17,6 +17,9 @@ export type ExplorerBlockCardProps = {
 // This component is a Card that represents a Block.
 const ExplorerBlockCard = (props: ExplorerBlockCardProps) => {
 
+
+  const [isExpanded, toggleExpanded] = React.useState(false);
+
   // This state hook holds the milliseconds since mined
   const [milliSinceLastMined, setmilliSinceLastMined] = React.useState('0s');
 
@@ -52,7 +55,13 @@ const ExplorerBlockCard = (props: ExplorerBlockCardProps) => {
   }
 
   return (
-    <Card>
+    <Card
+      style={
+        isExpanded?
+          { width: Math.ceil(props.block.transactions.length / 100) * 300 - 24 }
+          : undefined
+      }
+    >
       <div className="explorerblockcard-header">
         <div className="explorerblockcard-header-top">
           <span>
@@ -68,23 +77,34 @@ const ExplorerBlockCard = (props: ExplorerBlockCardProps) => {
           </span>
         </div>
       </div>
-      <div className="explorerblockcard-body">
+      <div className={`explorerblockcard-body ${isExpanded ? 'expanded' : ''}`}>
         {
-          props.block.transactions.slice(0, 100).map((transaction: any) => (
-            <ExplorerTransactionBlock key={transaction.hash} {...{ transaction }} />
-          ))
+          props.block.transactions
+            .slice(0, isExpanded ? undefined : 100)
+            .map((transaction: any) => (
+              <ExplorerTransactionBlock key={transaction.hash} {...{ transaction }} />
+            ))
         }
       </div>
       {
-        props.block.transactions.length < 100
+        props.block.transactions.length <= 100
           ? null
           : (
             <div className="explorerblockcard-footer">
               <span>
-                {props.block.transactions.length - 100} MORE TX
+                {
+                  isExpanded
+                    ? `HIDE ${props.block.transactions.length - 100} TX`
+                    : `${props.block.transactions.length - 100} MORE TX`
+                }
               </span>
-              <button className="explorerblockcard-footer-button">
-                <CaretDownIcon />
+              <button
+                className="explorerblockcard-footer-button"
+                onClick={() => toggleExpanded(!isExpanded)}
+              >
+                <div style={{ transform: `rotate(${isExpanded? 180 : 0}deg)` }}>
+                  <CaretDownIcon />
+                </div>
               </button>
             </div>
           )
