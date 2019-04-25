@@ -1,10 +1,10 @@
 import React from 'react';
-import moment from 'moment';
 import { Block } from 'web3/eth/types';
 
 import ExplorerTransactionBlock from '../ExplorerTransactionBlock';
+import ExplorerBlockCardTime from '../ExplorerBlockCardTime';
 import ExplorerBlockCardPlaceholder from './ExplorerBlockCard.Placeholder';
-import Card from '../../../../common/Card';
+import Card from '../../../../common/Card/Loadable';
 import { CaretDownIcon } from '../../../../common/Icons';
 import thousandsFormat from '../../../../../utils/thousandsFormat';
 
@@ -17,34 +17,9 @@ export type ExplorerBlockCardProps = {
 // This component is a Card that represents a Block.
 const ExplorerBlockCard = (props: ExplorerBlockCardProps) => {
 
-
+  // If a block has over 100 transactions, it can be expanded
+  // to show the rest of them
   const [isExpanded, toggleExpanded] = React.useState(false);
-
-  // This state hook holds the milliseconds since mined
-  const [milliSinceLastMined, setmilliSinceLastMined] = React.useState('0s');
-
-  // If a real Block object is passed as a prop, then
-  // This will parse the timestamp diff in `#m #s`
-  const updateTimeElapsed = () => {
-    if (props.block.timestamp) {
-      const lastMined = moment(props.block.timestamp * 1000);
-      const minutes = moment().diff(lastMined, 'minutes');
-      const seconds = moment().diff(lastMined, 'seconds');
-      const elapsed = minutes
-        ? `${minutes}m ${seconds - minutes * 60}s`
-        : `${seconds}s`;
-
-      setmilliSinceLastMined(elapsed);
-    }
-  };
-
-  // This will launch the first time the card receives a real block
-  // object. It updates the "mined #m #s ago" text
-  React.useEffect(() => {
-    updateTimeElapsed();
-    const updateSeconds = setInterval(updateTimeElapsed, 1000);
-    return () => clearInterval(updateSeconds);
-  }, [props.block.timestamp]);
 
   // If an empty object is passed as a block prop, then we'll return
   // an empty placeholder
@@ -62,6 +37,7 @@ const ExplorerBlockCard = (props: ExplorerBlockCardProps) => {
           : undefined
       }
     >
+      {/* Block header */}
       <div className="explorerblockcard-header">
         <div className="explorerblockcard-header-top">
           <span>
@@ -72,13 +48,14 @@ const ExplorerBlockCard = (props: ExplorerBlockCardProps) => {
           </span>
         </div>
         <div className="explorerblockcard-header-bottom">
-          <span>
-            mined {milliSinceLastMined} ago
-          </span>
+          <ExplorerBlockCardTime timestamp={props.block.timestamp} />
         </div>
       </div>
+      {/* Block body */}
       <div className={`explorerblockcard-body ${isExpanded ? 'expanded' : ''}`}>
-        {
+        {/**
+          * This is the grid of squares representing transactions
+          */
           props.block.transactions
             .slice(0, isExpanded ? undefined : 100)
             .map((transaction: any) => (
@@ -86,7 +63,10 @@ const ExplorerBlockCard = (props: ExplorerBlockCardProps) => {
             ))
         }
       </div>
-      {
+      {/**
+        * This is the footer that gives the user the option to expand/hide
+        * the rest of the 100 transactions (if the block has over 100 tx).
+        */
         props.block.transactions.length <= 100
           ? null
           : (
