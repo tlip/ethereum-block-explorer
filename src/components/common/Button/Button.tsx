@@ -4,10 +4,10 @@ import './Button.scss';
 
 export type ButtonProps = React.ComponentProps<any>;
 
-const Button = ({ className, children, ...props}: ButtonProps) => (
-  <div className={`button-container ${props.className}`} {...props}>
+const Button = ({ className, children, ...props }: ButtonProps) => (
+  <button className={`button-container ${className}`} {...props}>
     {...children}
-  </div>
+  </button>
 );
 
 export default Button;

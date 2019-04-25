@@ -12,6 +12,7 @@ declare namespace Web3Context {
     headerSubscription?: Subscription<BlockHeader>,
     blocks: { [blockNumber: number]: Block },
     blockRangeVisible: number[],
+    ethPrice: number,
     statistics: {
       gasUsed: number,
       fullness: number,

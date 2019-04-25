@@ -7,7 +7,7 @@ import { Web3Context } from '../../../contexts/Web3Context';
 import './ExplorerView.scss';
 
 const ExplorerView = () => (
-  <div className="explorerview-container">
+  <main className="explorerview-container">
     <Web3Context.Consumer>
       {({ state, actions }) => (
         <>
@@ -26,7 +26,7 @@ const ExplorerView = () => (
         </>
       )}
     </Web3Context.Consumer>
-  </div>
+  </main>
 );
 
 export default ExplorerView;

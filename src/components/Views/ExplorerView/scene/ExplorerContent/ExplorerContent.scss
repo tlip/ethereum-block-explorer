@@ -1,27 +1,41 @@
 .explorerviewcontent-container {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  width: calc(100vw - 96px);
+  overflow: hidden;
 
-  overflow-y: auto;
-  
-  width: 100;
-  padding: 24px;
-  box-sizing: border-box;
 
   .explorerviewcontent-show-newer-container {
-    position: absolute;
-    top: 0;
     opacity: 0;
-    transform: translate3d(0, 150px, 0);
-
+    transform: translate3d(0, -41px, 0);
+    z-index: 2;
+    height: 0px;
     transition: 250ms linear;
+    margin-left: 24px;
 
     &.active {
       opacity: 1;
-      transform: translate3d(0, 210px, 0);
+      transform: translate3d(0, 20px, 0);
     }
+
+    > button {
+      background: rgba(255, 255, 255, 0.8);
+      color: #3a307c;
+    }
+  }
+
+  .explorerviewcontent-blocks {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    overflow-y: auto;
+    
+    width: 100%;
+    padding: 24px;
+    box-sizing: border-box;
   }
 
   .explorerviewcontent-load-more-container {

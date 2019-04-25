@@ -8,10 +8,13 @@ import App from './components/App';
 import injectEnv from './inject.env';
 
 const assets = require(process.env.RAZZLE_ASSETS_MANIFEST as string);
+const maxAge = process.env.NODE_ENV === 'production'
+  ? { maxAge: 3600000 }
+  : undefined;
 
 export default express()
   .disable('x-powered-by')
-  .use(express.static(process.env.RAZZLE_PUBLIC_DIR as string))
+  .use(express.static(process.env.RAZZLE_PUBLIC_DIR as string, maxAge))
   .use(morgan('dev'))
   .get('/*', (req, res) => {
     const context: { [field: string]: any } = {};
@@ -41,6 +44,20 @@ export default express()
             </script>
             <link rel="stylesheet" href="/fonts.css">
             <style>
+              header,
+              main {
+                width: 100%;
+              }
+              li {
+                list-style: none;
+              }
+              button {
+                text-decoration: none;
+                outline: none;
+                background: transparent;
+                color: transparent;
+                border: none;
+              }
               .nav-link span,
               .headerfield-container h2,
               .explorerviewcontent-show-newer-container,
@@ -51,6 +68,13 @@ export default express()
                 margin: 0;
                 padding: 0;
                 background: linear-gradient(89.77deg, #584E9A 0.23%, #3A307C 99.77%);
+              }
+              .explorerblockcard-header .explorerblockcard-header-top span,
+              .explorerblockcard-footer {
+                color: transparent;
+              }
+              .header-container {
+                width: 100%;
               }
               .nav-header,
               .nav-link {

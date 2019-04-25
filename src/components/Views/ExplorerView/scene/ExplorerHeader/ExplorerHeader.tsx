@@ -2,7 +2,7 @@ import React from 'react';
 import { Block, Transaction } from 'web3/eth/types';
 
 import ExplorerHeaderPlaceholder from './ExplorerHeader.Placeholder';
-import Header from '../../../../common/Header';
+import Header from '../../../../common/Header/Loadable';
 import HeaderField from '../../../../common/HeaderField/Loadable';
 import thousandsFormat from '../../../../../utils/thousandsFormat';
 

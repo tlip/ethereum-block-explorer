@@ -1,10 +1,15 @@
 import React from 'react';
 import Web3 from 'web3';
+import axios, { AxiosResponse } from 'axios';
 import actionComposer from '../utils/actionComposer';
+import { canUseDOM } from 'exenv';
 import { Block, Eth } from 'web3-eth';
 import { BlockHeader } from 'web3/eth/types';
 
-const { RAZZLE_PRODUCT_ID } = process.env;
+const { NODE_ENV, RAZZLE_PRODUCT_ID } = !canUseDOM
+  ? process.env
+  // @ts-ignore
+  : window.env;
 
 
 // Initial State
@@ -16,6 +21,7 @@ const initialState: Web3Context.State = {
   headerSubscription: undefined,
   blocks: {},
   blockRangeVisible: [Infinity, -Infinity],
+  ethPrice: 0,
   statistics: {
     gasUsed: 0,
     fullness: 0,
@@ -50,6 +56,8 @@ const themeReducer = (
     return { ...state, headerSubscription: action.payload };
   case 'UPDATE_BLOCK_RANGE':
     return { ...state, blockRangeVisible: action.payload };
+  case 'SET_ETH_PRICE':
+    return { ...state, ethPrice: action.payload };
   case 'SET_BLOCK':
     const block: Block | any = Object.values(action.payload)[0] || {};
     return {
@@ -108,6 +116,18 @@ export const Web3ContextProvider = (props: any) => {
     });
   };
 
+  // Get surrent ETH price
+  const setCurrentEthPrice = () => (
+    axios.get('https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD')
+      .then((value: AxiosResponse<any>) => actionComposer(dispatch, 'SET_ETH_PRICE')(value.data.USD))
+      .catch((err: Error) => {
+        if (NODE_ENV !== 'production') {
+          console.log(err);
+        }
+        return state.ethPrice;
+      })
+  );
+
   // Fetch 20 earlier blocks than currently in the state
   const getMoreBlocks = () => {
     const range = state.blockRangeVisible;
@@ -151,6 +171,7 @@ export const Web3ContextProvider = (props: any) => {
 
     headerSubscription
       .on('data', (block: BlockHeader) => {
+        setCurrentEthPrice();
         getBlock(block.number - 1);
       });
 

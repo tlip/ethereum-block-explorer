@@ -48,7 +48,6 @@
       font-family: 'Lineto Akkuratmono Regular';
       font-size: 12px;
       line-height: normal;
-
     }
 
     .explorertransactionblock-tooltip-field {
@@ -64,6 +63,20 @@
       display: flex;
       justify-content: space-between;
       width: 100%;
+    }
+    
+    .explorertransactionblock-tooltip-bottom {
+      > div {
+        width: 100%;
+        .explorertransactionblock-tooltip-value {
+          display: flex;
+          justify-content: space-between;
+
+          > div:nth-child(2) {
+            color: #666666;
+          }
+        }
+      }
     }
     
   }

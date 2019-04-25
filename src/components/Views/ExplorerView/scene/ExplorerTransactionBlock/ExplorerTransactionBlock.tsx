@@ -1,6 +1,7 @@
 import React from 'react';
 
 import './ExplorerTransactionBlock.scss';
+import { Web3Context } from '@src/contexts/Web3Context';
 
 const ExplorerTransactionBlock = (props: { transaction?: any }) => {
 
@@ -13,7 +14,7 @@ const ExplorerTransactionBlock = (props: { transaction?: any }) => {
     : 0;
 
   return (
-    <div className="explorertransactionblock-container">
+    <li className="explorertransactionblock-container">
       <div
         className={`explorertransactionblock-block ${parsedValue && 'active'}`}
         onMouseEnter={() => setHovering(true)}
@@ -29,6 +30,7 @@ const ExplorerTransactionBlock = (props: { transaction?: any }) => {
           : (
             <div className="explorertransactionblock-tooltip">
               <div className="explorertransactionblock-tooltip-top">
+                {/* Transaction Sender */}
                 <div>
                   <div className="explorertransactionblock-tooltip-field">
                     FROM
@@ -41,6 +43,7 @@ const ExplorerTransactionBlock = (props: { transaction?: any }) => {
                     }
                   </div>
                 </div>
+                {/* Transaction Recipipent */}
                 <div>
                   <div className="explorertransactionblock-tooltip-field">
                     TO
@@ -55,16 +58,26 @@ const ExplorerTransactionBlock = (props: { transaction?: any }) => {
                 </div>
               </div>
               <div className="explorertransactionblock-tooltip-bottom">
+                {/* Transaction Value */}
                 <div>
                   <div className="explorertransactionblock-tooltip-field">
                     VALUE
                   </div>
                   <div className="explorertransactionblock-tooltip-value">
-                    {
-                      props.transaction.value
-                        ? parsedValue
-                        : null
-                    } ETH
+                    <div>
+                      {/* Value in ETH */}
+                      {parsedValue} ETH
+                    </div>
+                    <div>
+                      {/* Value in USD */}
+                      <Web3Context.Consumer>
+                        {({ state }) => (
+                          parsedValue
+                            ? `$${(parsedValue * state.ethPrice).toFixed(2)} @ $${state.ethPrice}`
+                            : ''
+                        )}
+                      </Web3Context.Consumer>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -72,7 +85,7 @@ const ExplorerTransactionBlock = (props: { transaction?: any }) => {
           )
       }
 
-    </div>
+    </li>
   );
 };
 

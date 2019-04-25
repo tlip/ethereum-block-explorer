@@ -2,9 +2,9 @@ import React from 'react';
 import './Header.scss';
 
 const Header = ({ children }: React.ComponentProps<any>) => (
-  <div className="header-container">
+  <header className="header-container">
     {children}
-  </div>
+  </header>
 );
 
 export default Header;
