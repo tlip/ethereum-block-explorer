@@ -6,7 +6,7 @@ import * as Icons from '../Icons';
 import './Nav.scss';
 
 const Nav = ({ location }: { location: { pathname: string }}) => (
-  <div className="nav-container">
+  <nav className="nav-container">
     <div className="nav-header">
       <Icons.Infura />
     </div>
@@ -34,7 +34,7 @@ const Nav = ({ location }: { location: { pathname: string }}) => (
         <span>LOGOUT</span>
       </div>
     </div>
-  </div>
+  </nav>
 );
 
 export default withRouter(Nav);
