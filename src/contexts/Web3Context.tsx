@@ -182,6 +182,7 @@ export const Web3ContextProvider = (props: any) => {
   // On unmount, unsubscribe
   React.useEffect(() => {
     subscribeToNewBlockHeaders();
+    setCurrentEthPrice();
     return () => {
       state.headerSubscription && state.headerSubscription.unsubscribe();
     };
