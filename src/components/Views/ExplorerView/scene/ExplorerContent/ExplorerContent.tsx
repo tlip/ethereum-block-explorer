@@ -23,15 +23,17 @@ const ExplorerContent = (props: ExplorerContentProps) => {
   // we'll have a button pop up a la Twitter telling the user that we can add 
   // newer blocks.
 
-  // This is so that we don't mess the user up if they're analyzing a specific block and/or transactioini
+  // This is so that we don't mess the user up if they're analyzing a specific
+  // block and/or transactioini
   const needsUpdate = props.blockRangeVisible[1] < +newestBlockNum;
 
   // Here we're going to filter out the blocks with numbers outside of the range
   // passed in blockRangeVisible
   const _blocks: (Block | {})[] = Object.values(props.blocks)
     .filter(block => (
-      block &&
-        (block.number > props.blockRangeVisible[0]) && (block.number <= props.blockRangeVisible[1])
+      block
+        && (block.number > props.blockRangeVisible[0])
+        && (block.number <= props.blockRangeVisible[1])
     ));
 
   // We will always show at least 20 cards.
@@ -41,23 +43,47 @@ const ExplorerContent = (props: ExplorerContentProps) => {
   }
 
   return (
-    <div className="explorerviewcontent-container">
-      {
-        _blocks.reverse().map((block: Block | any) => (
-          <ExplorerBlockCard key={block.timestamp || Math.random()} {...{ block }} />
-        ))
+    <section className="explorerviewcontent-container">
+      {/**
+        * If the page has fully loaded and if there are new blocks,
+        * then we will show a button to add them to the user's view
+        */
+        Object.keys(props.blocks).length < 20
+          ? null
+          : (
+            <div
+              className={`explorerviewcontent-show-newer-container ${needsUpdate? 'active' : ''}`}
+            >
+              <Button onClick={props.showNewerBlocks}>
+                SHOW NEWER BLOCKS
+              </Button>
+            </div>
+          )
       }
-      <div className={`explorerviewcontent-show-newer-container ${needsUpdate? 'active' : ''}`}>
-        <Button onClick={props.showNewerBlocks}>
-          SHOW NEWER BLOCKS
-        </Button>
-      </div>
-      <div className="explorerviewcontent-load-more-container">
-        <Button onClick={props.getMoreBlocks}>
-          LOAD MORE
-        </Button>
-      </div>
-    </div>
+      <section className="explorerviewcontent-blocks">
+        {/**
+          * Render all of the currently visible blocks
+          */
+          _blocks.reverse().map((block: Block | any) => (
+            <ExplorerBlockCard key={block.timestamp || Math.random()} {...{ block }} />
+          ))
+        }
+        {/**
+          * If the page is loaded, then we'll have a button below the blocks
+          * to load 20 more.
+          */
+          Object.keys(props.blocks).length < 20
+            ? null
+            : (
+              <div className="explorerviewcontent-load-more-container">
+                <Button onClick={props.getMoreBlocks}>
+                  LOAD MORE
+                </Button>
+              </div>
+            )
+        }
+      </section>
+    </section>
   );
 };
 
