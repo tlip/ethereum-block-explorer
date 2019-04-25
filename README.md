@@ -58,5 +58,5 @@ $ npm start
 * ~~Add `# MORE TXs` at the bottom of the block cards when over TX count is >100.~~
 * ~~Add ability to expand card to view overflow transactions.~~
 * Add more tests (only 1 right now, sorry :[).
-* Add transaction USD price data from CoinMarketCap or CryptoCompare.
+* ~~Add transaction USD price data from CoinMarketCap or CryptoCompare.~~
 * Verify that the stats in the header are calculated correctly.
