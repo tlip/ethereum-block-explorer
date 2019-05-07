@@ -4,8 +4,8 @@
   padding: 10px 42px;
   box-sizing: border-box;
 
-  background: rgba(255, 255, 255, 0.25);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #0246b5;
+  border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 20px;
   outline: none;
 
@@ -22,6 +22,6 @@
   transition: 100ms background linear;
 
   &:hover {
-    background: rgba(255, 255, 255, 0.45);
+    background: #023695;
   }
 }

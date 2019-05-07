@@ -34,7 +34,7 @@ export default express()
           <head>
             <meta http-equiv="X-UA-Compatible" content="IE=edge" />
             <meta charset="utf-8" />
-            <title>Infura Explorer</title>
+            <title>Ethereum Block Explorer</title>
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <link rel="apple-touch-icon" sizes="180x180" href="/favicon.png">
             <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -67,7 +67,7 @@ export default express()
               body {
                 margin: 0;
                 padding: 0;
-                background: linear-gradient(89.77deg, #584E9A 0.23%, #3A307C 99.77%);
+                background: linear-gradient(89.77deg, #eaeaea 0.23%, #bdbdbd 99.77%);
               }
               .explorerblockcard-header .explorerblockcard-header-top span,
               .explorerblockcard-footer {

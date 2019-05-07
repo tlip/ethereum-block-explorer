@@ -55,7 +55,7 @@
     }
 
     .explorertransactionblock-tooltip-value {
-      color: #584E9A;
+      color: rgb(0, 5, 255);
     }
 
     .explorertransactionblock-tooltip-top,
@@ -85,14 +85,14 @@
     width: 16px;
     height: 16px;
     margin: 0;
-    background: rgba(255, 255, 255, 0.25);
+    background: rgba(0, 5, 255, 0.25);
 
     &.active {
-      background: rgba(255, 255, 255, 0.70);
+      background: rgba(0, 5, 255, 0.70);
     }
 
     &:hover {
-      background: rgba(255, 255, 255, 1);
+      background: rgba(0, 5, 255, 1);
     }
   } 
 }

@@ -8,7 +8,7 @@ import './Nav.scss';
 const Nav = ({ location }: { location: { pathname: string }}) => (
   <nav className="nav-container">
     <div className="nav-header">
-      <Icons.Infura />
+      <Icons.ThomLi />
     </div>
     <div className="nav-links">
       <div className="nav-link">

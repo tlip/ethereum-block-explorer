@@ -11,7 +11,7 @@ export default Loadable({
       minWidth: '96px',
       height: '100vh',
       maxHeight: '100vh',
-      background: '#6C62AE',
+      background: ' rgba(0, 5, 255, 0.8)',
       boxShadow: '5px 0px 50px rgba(0, 0, 0, 0.1)',
     }}/>
   ),

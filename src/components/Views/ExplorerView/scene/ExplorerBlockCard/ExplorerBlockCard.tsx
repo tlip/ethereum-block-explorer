@@ -15,7 +15,7 @@ export type ExplorerBlockCardProps = {
 };
 
 // This component is a Card that represents a Block.
-const ExplorerBlockCard = (props: ExplorerBlockCardProps) => {
+const ExplorerBlockCard = React.memo((props: ExplorerBlockCardProps) => {
 
   // If a block has over 100 transactions, it can be expanded
   // to show the rest of them
@@ -91,6 +91,6 @@ const ExplorerBlockCard = (props: ExplorerBlockCardProps) => {
       }
     </Card>
   );
-};
+});
 
 export default ExplorerBlockCard;
