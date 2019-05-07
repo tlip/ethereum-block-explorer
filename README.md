@@ -1,4 +1,4 @@
-# infura-explorer
+# Ethereum Block Explorer
 
 ```
 ███████╗████████╗██╗  ██╗███████╗██████╗ ███████╗██╗   ██╗███╗   ███╗
