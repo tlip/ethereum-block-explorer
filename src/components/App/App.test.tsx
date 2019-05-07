@@ -2,13 +2,10 @@ import App from './App';
 import React from 'react';
 import Renderer from 'react-test-renderer';
 import MemoryRouter from 'react-router-dom/MemoryRouter';
+import injectEnv from '../../inject.env';
 
-Object.assign(global, {
-  ...global,
-  window: {
-    env: { ...process.env },
-  },
-});
+// @ts-ignore
+window.env = injectEnv;
 
 describe('<App />', () => {
   test('renders without exploding', () => {

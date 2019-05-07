@@ -2,14 +2,9 @@ import React from 'react';
 import Web3 from 'web3';
 import axios, { AxiosResponse } from 'axios';
 import actionComposer from '../utils/actionComposer';
-import { canUseDOM } from 'exenv';
-import { Block, Eth } from 'web3-eth';
+import { Block } from 'web3-eth';
 import { BlockHeader } from 'web3/eth/types';
-
-const { NODE_ENV, RAZZLE_PRODUCT_ID } = !canUseDOM
-  ? process.env
-  // @ts-ignore
-  : window.env;
+import { NODE_ENV, RAZZLE_PRODUCT_ID } from '../inject.env';
 
 
 // Initial State

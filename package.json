@@ -1,6 +1,6 @@
 {
   "name": "infura-explorer",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "author": "Thomas Lipari <thomas.lipari@gmail.com>",
   "private": true,
   "repository": {
@@ -57,7 +57,7 @@
     "mini-css-extract-plugin": "^0.5.0",
     "node-sass": "^4.11.0",
     "razzle-plugin-scss": "^2.2.0",
-    "react-test-renderer": "^16.8.3",
+    "react-test-renderer": "^16.8.6",
     "sass-loader": "^7.1.0",
     "tslint-config-standard": "^8.0.1"
   },
@@ -81,7 +81,8 @@
       "ts",
       "tsx",
       "js",
-      "json"
+      "json",
+      "node"
     ],
     "collectCoverageFrom": [
       "src/**/*.{js,jsx,ts,tsx}"

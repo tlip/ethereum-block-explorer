@@ -8,7 +8,7 @@ export default Loadable({
       width: '100%',
       height: '191px',
       miniHeight: '191px',
-      background: 'rgba(0, 0, 0, 0.1)',
+      background: 'rgba(0, 108, 255, 0.7)',
     }} />
   ),
 });

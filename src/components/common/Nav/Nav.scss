@@ -7,7 +7,7 @@
   height: 100vh;
   max-height: 100vh;
 
-  background: #6C62AE;
+  background: rgb(36, 106, 220);
   box-shadow: 5px 0px 50px rgba(0, 0, 0, 0.1);
 
   .nav-header {
@@ -44,17 +44,17 @@
 
     cursor: pointer;
     
-    background: rgba(88, 79, 154, 0);
+    background: transparent;
     transition: 200ms background ease-in-out;
 
     &:hover {
-      background: rgba(88, 79, 154, 0.5);
+      background: rgb(20, 89, 202);
     }
 
     &.active,
     &.active:hover {
       cursor: default;
-      background: rgba(88, 79, 154, 1);
+      background: #0246b5;
     }
 
     span {
