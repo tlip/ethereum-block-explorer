@@ -30,7 +30,7 @@
     "@types/react-test-renderer": "^16.0.3",
     "@types/web3": "^1.0.18",
     "@types/webpack-env": "^1.13.6",
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "babel-plugin-dynamic-import-webpack": "^1.1.0",
     "exenv": "^1.2.2",
     "express": "^4.16.4",
