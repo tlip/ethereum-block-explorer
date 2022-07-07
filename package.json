@@ -34,7 +34,7 @@
     "babel-plugin-dynamic-import-webpack": "^1.1.0",
     "exenv": "^1.2.2",
     "express": "^4.16.4",
-    "moment": "^2.23.0",
+    "moment": "^2.29.4",
     "morgan": "^1.9.1",
     "razzle": "^3.0.0",
     "razzle-plugin-typescript": "^2.4.0",
